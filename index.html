@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月々の予定表</title>
+<style>
+  :root {
+    --primary-color: #0056b3;
+    --primary-hover: #003d82;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --sub-text: #7f8c8d;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 15px;
+  }
+
+  /* メインコンテナ (PCとスマホで幅調整) */
+  .main-wrapper {
+    width: 100%;
+    max-width: 900px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* ヘッダーデザイン */
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 26px;
+    color: var(--primary-color);
+    display: inline-block;
+    position: relative;
+    padding-bottom: 12px;
+    font-weight: 700;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--sub-text);
+    margin-top: 8px;
+  }
+
+  /* ボタン・グリッド構造 (スマホ: 1列, タブレット: 2列, PC: 4列) */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+
+  @media (min-width: 520px) {
+    .schedule-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 820px) {
+    .schedule-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* カード型リンクボタン */
+  .schedule-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #1e293b;
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 20px 18px;
+    min-height: 120px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* カード上のホバー・タップ効果 */
+  .schedule-card:hover,
+  .schedule-card:active {
+    transform: translateY(-5px);
+    background: #0f172a;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    border-color: #38bdf8;
+  }
+
+  /* 月ごとのアクセントタグ */
+  .card-tag {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #38bdf8;
+    letter-spacing: 0.5px;
+  }
+
+  .card-body {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .month-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .arrow-icon {
+    font-size: 18px;
+    transition: transform 0.25s ease;
+  }
+
+  .schedule-card:hover .arrow-icon {
+    transform: translateX(5px);
+  }
+
+  /* フッター */
+  footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 12px;
+    color: var(--sub-text);
+  }
+</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  <header>
+    <h1>月々の予定表</h1>
+    <p class="subtitle">確認したい月をタップまたはクリックしてください</p>
+  </header>
+
+  <main class="schedule-grid">
+    <!-- cv -->
+    <a href="cvv.html" target="_blank" class="schedule-card">
+      <span class="card-tag">CV</span>
+      <div class="card-body">
+        <span class="month-title">cv</span>
+        <span class="arrow-icon">➔</span>
+      </div>
+    </a>
+     <!-- 10月 -->
+    <a href="10月.html" target="_blank" class="schedule-card">
+      <span class="card-tag">10 OCTOBER</span>
+      <div class="card-body">
+        <span class="month-title">10月の予定</span>
+        <span class="arrow-icon">➔</span>
+      </div>
+    </a>
+
+      <!-- 11月 -->
+    <a href="11月.html" target="_blank" class="schedule-card">
+      <span class="card-tag">11 NOVEMBER</span>
+      <div class="card-body">
+        <span class="month-title">11月の予定</span>
+        <span class="arrow-icon">➔</span>
+      </div>
+    </a>
+
+          <!-- 12月 -->
+    <a href="12月.html" target="_blank" class="schedule-card">
+      <span class="card-tag">12 DECEMBER</span>
+      <div class="card-body">
+        <span class="month-title">12月の予定</span>
+        <span class="arrow-icon">➔</span>
+      </div>
+    </a>
+
+     <!-- 振休 -->
+    <a href="振休リスト.html" target="_blank" class="schedule-card">
+      <span class="card-tag">振休</span>
+      <div class="card-body">
+        <span class="month-title">振休リスト</span>
+        <span class="arrow-icon">➔</span>
+      </div>
+    </a>
+  </main>
+
+  <footer>
+    <p>Schedule Navigation System</p>
+  </footer>
+</div>
+
+</body>
+</html>
