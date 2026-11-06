@@ -12,7 +12,8 @@
       font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
       color: #333;
       line-height: 1.6;
-      
+      margin: 16px;
+      padding: 0;
     }
     h1 {
       font-size: 22px;
@@ -22,38 +23,46 @@
       padding-bottom: 10px;
       margin-top: 10px;
     }
+
+    /* Moved to the left */
+    .container {
+      display: flex;
+      gap: 16px;
+      justify-content: flex-start;   /* ← left side */
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
     table {
       width: 100%;
-      max-width: 300px;
+      max-width: 280px;
       border-collapse: collapse;
-      margin: auto 20px;
+      margin: 0;
     }
-    th, td {
+
+    td {
       border: 12px solid #301546;
-      padding: 12px;
+      padding: 0;                    /* remove white gap */
+      background-color: #301546;     /* ← fill purple color */
       text-align: left;
       color: #000108;
     }
-    th {
-      background-color: #1c2472;
-      width: 25%;
-    }
 
-    /* Green background behind the text only */
     .furikyu-list {
-      display: inline-block;
+      display: block;
       background: #5fcfa9;
-      padding: 20px 12px;
-      border-radius: 10px;
-      font-size: 20px;
+      padding: 16px 14px;
+      border-radius: 8px;
+      font-size: 18px;
       line-height: 1.7;
       width: 100%;
     }
+
     .marquee {
       color: #32497d;
       font-weight: bold;
-      margin-top: 20px;
-      font-size: 20px;
+      margin-top: 24px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -61,20 +70,45 @@
 
   <h1>振休リスト</h1>
 
-  <table>
-    <tr>
-      <td>
-        <span class="furikyu-list">
-          2026年<br>
-          振休まだ使ってない 6日<br>
-           9月➡ 5日, 26日<br>
-          10月➡ 3日, 10日, 31日<br>
-          11月➡ 7日<br>
-          12月➡
-        </span>
-      </td>
-    </tr>
-  </table>
+  <div class="container">
+    <!-- 2026 -->
+    <table>
+      <tr>
+        <td>
+          <span class="furikyu-list">
+            2026年<br>
+            振休まだ使ってない 6日<br>
+            9月➡ 5日, 26日<br>
+            10月➡ 3日, 10日, 31日<br>
+            11月➡ 7日<br>
+            12月➡
+          </span>
+        </td>
+      </tr>
+    </table>
+
+    <!-- 2027 -->
+    <table>
+      <tr>
+        <td>
+          <span class="furikyu-list">
+          
+          </span>
+        </td>
+      </tr>
+    </table>
+
+        <!-- 2027 -->
+    <table>
+      <tr>
+        <td>
+          <span class="furikyu-list">
+           
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
 
   <marquee behavior="" direction="left" class="marquee">This Data will be updated manually.</marquee>
 
