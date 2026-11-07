@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>振休リスト</title>
+  <title>リスト</title>
   <style>
     * {
       box-sizing: border-box;
@@ -58,6 +58,16 @@
       width: 100%;
     }
 
+    .list{
+      display: block;
+      background: #5fcfa9;
+      padding: 16px 14px;
+      border-radius: 8px;
+      font-size: 18px;
+      line-height: 1.7;
+      width: 100%;
+    }
+
     .marquee {
       color: #32497d;
       font-weight: bold;
@@ -68,9 +78,25 @@
 </head>
 <body>
 
-  <h1>振休リスト</h1>
+  <h1>ノート</h1>
 
   <div class="container">
+
+<!-- everyday -->
+    <table>
+      <tr>
+        <td>
+          <span class="list">
+            フェリーの予約番号 <br>
+            高速船 11/13　→　131番<br>
+            フェリー<br>
+            　　　　　↓<br>
+          11/21→7:00 -118番 宇久島 <br>
+          11/24→16:40-85番 佐世保 <br>
+          </span>
+        </td>
+      </tr>
+    </table>
     <!-- 2026 -->
     <table>
       <tr>
@@ -87,16 +113,7 @@
       </tr>
     </table>
 
-    <!-- 2027 -->
-    <table>
-      <tr>
-        <td>
-          <span class="furikyu-list">
-          
-          </span>
-        </td>
-      </tr>
-    </table>
+   
 
         <!-- 2027 -->
     <table>
@@ -111,6 +128,6 @@
   </div>
 
   <marquee behavior="" direction="left" class="marquee">This Data will be updated manually.</marquee>
-
+ 
 </body>
 </html>
