@@ -24,26 +24,25 @@
       margin-top: 10px;
     }
 
-    /* Moved to the left */
     .container {
       display: flex;
       gap: 16px;
-      justify-content: flex-start;   /* ← left side */
+      justify-content: flex-start;
       flex-wrap: wrap;
       margin: 20px 0;
     }
 
     table {
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       border-collapse: collapse;
       margin: 0;
     }
 
     td {
       border: 5px solid #301546;
-      padding: 0;                    /* remove white gap */
-      background-color: #301546;     /* ← fill purple color */
+      padding: 0;
+      background-color: #301546;
       text-align: left;
       color: #000108;
     }
@@ -58,7 +57,7 @@
       width: 100%;
     }
 
-    .list{
+    .list {
       display: block;
       background: #5fcfa9;
       padding: 16px 13px;
@@ -66,6 +65,57 @@
       font-size: 14px;
       line-height: 3.5;
       width: 100%;
+    }
+
+    .salary {
+      display: block;
+      background: #5fcfa9;
+      padding: 14px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 2.2;
+      width: 100%;
+    }
+
+    .salary .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .salary label {
+      flex: 1;
+    }
+
+    .salary input {
+      width: 110px;
+      padding: 3px 6px;
+      border: 1px solid #2a7a5a;
+      border-radius: 4px;
+      font-size: 13px;
+      text-align: right;
+      background: #e8fff5;
+    }
+
+    .salary .divider {
+      border-top: 1px dashed #2a7a5a;
+      margin: 8px 0;
+    }
+
+    .salary .total {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .salary .grand-total {
+      font-weight: bold;
+      font-size: 16px;
+      color: #004d33;
+      background: #b8f0d8;
+      padding: 4px 6px;
+      border-radius: 4px;
+      margin-top: 4px;
     }
 
     .marquee {
@@ -82,23 +132,23 @@
 
   <div class="container">
 
-<!-- everyday -->
+    <!-- everyday -->
     <table>
       <tr>
         <td>
           <span class="list">
             フェリーの予約番号 <br>
             　　　　　　高速船<br>
-            11/13→14:10発→15:35着131番 宇久島<br>
-            
+            11/13→14:10発→15:35着 131番 宇久島<br>
             　　　　　　フェリー<br>
-            11/21→7:00発→10:20着-118番 宇久島 <br>
-          11/24→16:40発→20:00着-85番 佐世保 <br>
+            11/21→7:00発→10:20着 118番 宇久島 <br>
+            11/24→16:40発→20:00着 85番 佐世保 <br>
           </span>
         </td>
       </tr>
     </table>
-    <!-- 2026 -->
+
+    <!-- furikyu-list -->
     <table>
       <tr>
         <td>
@@ -114,21 +164,100 @@
       </tr>
     </table>
 
-   
-
-        <!-- 2027 -->
+    <!-- salary with auto calculation -->
     <table>
       <tr>
         <td>
-          <span class="furikyu-list">
-           
-          </span>
+          <div class="salary">
+            <div class="row">
+              <label>ইজা</label>
+              <input type="number" id="iza" value="360000" oninput="calculate()">
+            </div>
+            <div class="row">
+              <label>১১-১২ মাসের বেতন</label>
+              <input type="number" id="salary" value="360000" oninput="calculate()">
+            </div>
+            <div class="row">
+              <label>বোনাস</label>
+              <input type="number" id="bonus" value="200000" oninput="calculate()">
+            </div>
+            <div class="row">
+              <label>আরাফাত</label>
+              <input type="number" id="arafat" value="100000" oninput="calculate()">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row total">
+              <label>ইয়েন মোট</label>
+              <span id="yenTotal">1,020,000 yen</span>
+            </div>
+            <div class="row">
+              <label>× 0.78 রেট</label>
+              <span id="converted">795,600 bdt</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+              <label>এনসিসি</label>
+              <input type="number" id="ncc" value="420000" oninput="calculate()">
+            </div>
+            <div class="row">
+              <label>লংকাবাংলা</label>
+              <input type="number" id="lankabangla" value="130000" oninput="calculate()">
+            </div>
+            <div class="row">
+              <label>কৃষি প্রকল্প</label>
+              <input type="number" id="krishi" value="40000" oninput="calculate()">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row grand-total">
+              <label>সর্বমোট</label>
+              <span id="grandTotal">1,385,600 bdt</span>
+            </div>
+          </div>
         </td>
       </tr>
     </table>
+
   </div>
 
   <marquee behavior="" direction="left" class="marquee">This Data will be updated manually.</marquee>
- 
+
+  <script>
+    function formatNumber(num) {
+      return num.toLocaleString('en-US');
+    }
+
+    function calculate() {
+      // Yen amounts
+      const iza = Number(document.getElementById('iza').value) || 0;
+      const salary = Number(document.getElementById('salary').value) || 0;
+      const bonus = Number(document.getElementById('bonus').value) || 0;
+      const arafat = Number(document.getElementById('arafat').value) || 0;
+
+      const yenTotal = iza + salary + bonus + arafat;
+      const converted = Math.round(yenTotal * 0.78);
+
+      // BDT amounts
+      const ncc = Number(document.getElementById('ncc').value) || 0;
+      const lankabangla = Number(document.getElementById('lankabangla').value) || 0;
+      const krishi = Number(document.getElementById('krishi').value) || 0;
+
+      const grandTotal = converted + ncc + lankabangla + krishi;
+
+      // Update display
+      document.getElementById('yenTotal').textContent = formatNumber(yenTotal) + ' yen';
+      document.getElementById('converted').textContent = formatNumber(converted) + ' bdt';
+      document.getElementById('grandTotal').textContent = formatNumber(grandTotal) + ' bdt';
+    }
+
+    // Calculate on page load
+    calculate();
+  </script>
+
 </body>
 </html>
